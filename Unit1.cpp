@@ -16,7 +16,7 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 {
 }
 
-void __fastcall TForm1::StringGrid1SelectCell(TObject *Sender, int ACol, int ARow,
+void __fastcall TForm1::InitialStringGridSelectCell(TObject *Sender, int ACol, int ARow,
 		  bool &CanSelect)
 {
 	CanSelect = false;
@@ -25,33 +25,43 @@ void __fastcall TForm1::StringGrid1SelectCell(TObject *Sender, int ACol, int ARo
 //при создании формы
 void __fastcall TForm1::FormCreate(TObject *Sender)
 {
-	StringGrid1->Cells[0][0] = "Ф.И.О.";
-	StringGrid1->Cells[1][0]="Ключ";
-	StringGrid1->Cells[0][1]="Пушкин А.С."; StringGrid1->Cells[1][1]="7";
-	StringGrid1->Cells[0][2]="Толстой Л.Н."; StringGrid1->Cells[1][2]="2";
-	StringGrid1->Cells[0][3]="Чехов А.П."; StringGrid1->Cells[1][3]="6";
-	StringGrid1->Cells[0][4]="Гоголь Н.В."; StringGrid1->Cells[1][4]="9";
-	StringGrid1->Cells[0][5]="Лермонтов М.Ю."; StringGrid1->Cells[1][5]="5";
-	StringGrid1->Cells[0][6]="Достоевский Ф.М."; StringGrid1->Cells[1][6]="12";
-	StringGrid1->Cells[0][7]="Есенин С.А."; StringGrid1->Cells[1][7]="4";
-	StringGrid1->Cells[0][8]="Тютчев Ф.И."; StringGrid1->Cells[1][8]="8";
-	StringGrid1->Cells[0][9]="Маяковский В.В."; StringGrid1->Cells[1][9]="10";
-	StringGrid1->Cells[0][10]="Тургенев И.С."; StringGrid1->Cells[1][10]="1";
+	InitialStringGrid->Cells[0][0] = "Ф.И.О.";
+	InitialStringGrid->Cells[1][0] = "Ключ";
+	InitialStringGrid->Cells[0][1] = "Пушкин А.С.";
+	InitialStringGrid->Cells[1][1]="7";
+	InitialStringGrid->Cells[0][2] = "Толстой Л.Н.";
+	InitialStringGrid->Cells[1][2]="2";
+	InitialStringGrid->Cells[0][3] = "Чехов А.П.";
+	InitialStringGrid->Cells[1][3]="6";
+	InitialStringGrid->Cells[0][4] = "Гоголь Н.В.";
+	InitialStringGrid->Cells[1][4]="9";
+	InitialStringGrid->Cells[0][5] = "Лермонтов М.Ю.";
+	InitialStringGrid->Cells[1][5]="5";
+	InitialStringGrid->Cells[0][6] = "Достоевский Ф.М.";
+	InitialStringGrid->Cells[1][6]="12";
+	InitialStringGrid->Cells[0][7] = "Есенин С.А.";
+	InitialStringGrid->Cells[1][7]="4";
+	InitialStringGrid->Cells[0][8] = "Тютчев Ф.И.";
+	InitialStringGrid->Cells[1][8]="8";
+	InitialStringGrid->Cells[0][9] = "Маяковский В.В.";
+	InitialStringGrid->Cells[1][9]="10";
+	InitialStringGrid->Cells[0][10] = "Тургенев И.С.";
+	InitialStringGrid->Cells[1][10]="1";
 }
 
 Tree *tree;
 TTree *root;
 
 //Кнопка "Создать (из массива)"
-void __fastcall TForm1::Button1Click(TObject *Sender)
+void __fastcall TForm1::CreateFromArrayButtonClick(TObject *Sender)
 {
-	TreeView1->Items->Clear();
-	Memo1->Clear();
-	tree->AddArrayToTree(&root, StringGrid1);
+	ShowTreeTreeView->Items->Clear();
+	ShowInfMemo->Clear();
+	tree->AddArrayToTree(&root, InitialStringGrid);
 }
 
 //Кнопка "Сбалансировать"
-void __fastcall TForm1::Button2Click(TObject *Sender)
+void __fastcall TForm1::MakeBallanceButtonClick(TObject *Sender)
 {
     if(root == NULL)
 	{
@@ -60,92 +70,92 @@ void __fastcall TForm1::Button2Click(TObject *Sender)
 	}
 	else
 	{
-        TreeView1->Items->Clear();
-		Memo1->Clear();
+		ShowTreeTreeView->Items->Clear();
+		ShowInfMemo->Clear();
 		int size = tree->ListCount(root);
 		TInf *array = new TInf[size];
 		tree->ReturnBallanced(&root, size, array);
 		delete[] array;
-        tree->ViewTree(root, -1, TreeView1);
-		TreeView1->FullExpand();
+		tree->ViewTree(root, -1, ShowTreeTreeView);
+		ShowTreeTreeView->FullExpand();
 	}
 
 }
 
 //Кнопка "Добавить"
-void __fastcall TForm1::Button3Click(TObject *Sender)
+void __fastcall TForm1::AddButtonClick(TObject *Sender)
 {
-	AnsiString str = Edit2->Text;
-	if (Edit1->Text == "" || str == "")
+	AnsiString str = EnterFioEdit->Text;
+	if (EnterKeyEdit->Text == "" || str == "")
 	{
 		Application->Title = "ОШИБКА";
 		ShowMessage("Введите данные для добавления!");
 	}
 	else if(str[1] == ' ')
 	{
-		Edit2->Text = "";
+		EnterFioEdit->Text = "";
         Application->Title = "ОШИБКА";
 		ShowMessage("Введите данные для добавления!");
     }
 	else
 	{
 		TInf inf;
-		inf.key = StrToInt(Edit1->Text);
-		inf.fio = Edit2->Text;
+		inf.key = StrToInt(EnterKeyEdit->Text);
+		inf.fio = EnterFioEdit->Text;
 		tree->AddList(&root, inf);
-		Edit1->Text = "";
-		Edit2->Text = "";
-        TreeView1->Items->Clear();
-		Memo1->Clear();
+		EnterKeyEdit->Text = "";
+		EnterFioEdit->Text = "";
+		ShowTreeTreeView->Items->Clear();
+		ShowInfMemo->Clear();
 	}
 }
 
 //Кнопка "Удалить (по ключу)"
-void __fastcall TForm1::Button5Click(TObject *Sender)
+void __fastcall TForm1::DeleteByKeyButtonClick(TObject *Sender)
 {
 	if(root == NULL)
 	{
 		Application->Title = "ВНИМАНИЕ";
 		ShowMessage("В дереве нет элементов!");
 	}
-	else if(Edit1->Text == "")
+	else if(EnterKeyEdit->Text == "")
 	{
 		Application->Title = "ОШИБКА";
 		ShowMessage("Введите ключ для удаления!");
 	}
 	else
 	{
-		root = tree->DelInfo(root, StrToInt(Edit1->Text));
-		Edit1->Text = "";
-		TreeView1->Items->Clear();
-		Memo1->Clear();
+		root = tree->DelInfo(root, StrToInt(EnterKeyEdit->Text));
+		EnterKeyEdit->Text = "";
+		ShowTreeTreeView->Items->Clear();
+		ShowInfMemo->Clear();
 	}
 }
 
 //Кнопка "Найти (по ключу)"
-void __fastcall TForm1::Button4Click(TObject *Sender)
+void __fastcall TForm1::SearchByKeyButtonClick(TObject *Sender)
 {
     if(root == NULL)
 	{
 		Application->Title = "ВНИМАНИЕ";
 		ShowMessage("В дереве нет элементов!");
 	}
-	else if(Edit1->Text == "")
+	else if(EnterKeyEdit->Text == "")
 	{
 		Application->Title = "ОШИБКА";
 		ShowMessage("Введите ключ для поиска!");
 	}
 	else
 	{
-		TreeView1->Items->Clear();
-		Memo1->Clear();
-		tree->SearchInfo(root, StrToInt(Edit1->Text), Memo1);
-        Edit1->Text = "";
+		ShowTreeTreeView->Items->Clear();
+		ShowInfMemo->Clear();
+		tree->SearchInfo(root, StrToInt(EnterKeyEdit->Text), ShowInfMemo);
+        EnterKeyEdit->Text = "";
 	}
 }
 
 //Кнопка "В TreeView"
-void __fastcall TForm1::Button6Click(TObject *Sender)
+void __fastcall TForm1::ShowInTreeViewButtonClick(TObject *Sender)
 {
 	if(root == NULL)
 	{
@@ -154,15 +164,15 @@ void __fastcall TForm1::Button6Click(TObject *Sender)
 	}
 	else
 	{
-		TreeView1->Items->Clear();
-		Memo1->Clear();
-		tree->ViewTree(root, -1, TreeView1);
-		TreeView1->FullExpand();
+		ShowTreeTreeView->Items->Clear();
+		ShowInfMemo->Clear();
+		tree->ViewTree(root, -1, ShowTreeTreeView);
+		ShowTreeTreeView->FullExpand();
 	}
 }
 
 //Кнопка "Прямой обход"
-void __fastcall TForm1::Button7Click(TObject *Sender)
+void __fastcall TForm1::PrPrintButtonClick(TObject *Sender)
 {
 	if(root == NULL)
 	{
@@ -171,13 +181,13 @@ void __fastcall TForm1::Button7Click(TObject *Sender)
 	}
 	else
 	{
-		Memo1->Clear();
-		tree->PrPrintTree(&root, Memo1);
+		ShowInfMemo->Clear();
+		tree->PrPrintTree(&root, ShowInfMemo);
 	}
 }
 
 //Кнопка "Обратный обход"
-void __fastcall TForm1::Button8Click(TObject *Sender)
+void __fastcall TForm1::ObPrintButtonClick(TObject *Sender)
 {
     if(root == NULL)
 	{
@@ -186,13 +196,13 @@ void __fastcall TForm1::Button8Click(TObject *Sender)
 	}
 	else
 	{
-		Memo1->Clear();
-		tree->ObPrintTree(&root, Memo1);
+		ShowInfMemo->Clear();
+		tree->ObPrintTree(&root, ShowInfMemo);
 	}
 }
 
 //Кнопка "Симметричный обход"
-void __fastcall TForm1::Button9Click(TObject *Sender)
+void __fastcall TForm1::SimPrintButtonClick(TObject *Sender)
 {
 	if(root == NULL)
 	{
@@ -201,13 +211,13 @@ void __fastcall TForm1::Button9Click(TObject *Sender)
 	}
 	else
 	{
-		Memo1->Clear();
-		tree->SimPrintTree(&root, Memo1);
+		ShowInfMemo->Clear();
+		tree->SimPrintTree(&root, ShowInfMemo);
 	}
 }
 
 //Кнопка "Свой вариант"
-void __fastcall TForm1::Button10Click(TObject *Sender)
+void __fastcall TForm1::MyTaskButtonClick(TObject *Sender)
 {
     if(root == NULL)
 	{
@@ -225,21 +235,21 @@ void __fastcall TForm1::Button10Click(TObject *Sender)
 			" только левый (т.к. если у узла есть правый, то он не максимальный)."
 			"\n\nДанная кнопка реализует 1 вариант (2 вариант реализует закоменти"
 			"рованная идентичная по названию функция в том же классе MyTask)");
-		TreeView1->Items->Clear();
-		Memo1->Clear();
+		ShowTreeTreeView->Items->Clear();
+		ShowInfMemo->Clear();
 		MyTask *myTask;
-		myTask->DeleteMaxLeftWithConnected(&root, Memo1);
-		tree->ViewTree(root, -1, TreeView1);
-		TreeView1->FullExpand();
+		myTask->DeleteMaxLeftWithConnected(&root, ShowInfMemo);
+		tree->ViewTree(root, -1, ShowTreeTreeView);
+		ShowTreeTreeView->FullExpand();
 	}
 }
 
 //Кнопка "Выход"
-void __fastcall TForm1::Button11Click(TObject *Sender)
+void __fastcall TForm1::ExitButtonClick(TObject *Sender)
 {
 	tree->DeleteTree(&root);
-	Memo1->Clear();
-	TreeView1->Items->Clear();
+	ShowInfMemo->Clear();
+	ShowTreeTreeView->Items->Clear();
 	Close();
 }
 

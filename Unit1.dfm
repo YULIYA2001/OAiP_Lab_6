@@ -1,7 +1,7 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  ActiveControl = Edit1
+  ActiveControl = EnterKeyEdit
   Anchors = []
   Caption = #1041#1080#1085#1072#1088#1085#1086#1077' '#1076#1077#1088#1077#1074#1086' '#1087#1086#1080#1082#1072
   ClientHeight = 384
@@ -103,7 +103,7 @@ object Form1: TForm1
     Font.Style = [fsBold, fsItalic]
     ParentFont = False
   end
-  object Memo1: TMemo
+  object ShowInfMemo: TMemo
     Left = 504
     Top = 27
     Width = 170
@@ -114,7 +114,7 @@ object Form1: TForm1
     ScrollBars = ssVertical
     TabOrder = 0
   end
-  object TreeView1: TTreeView
+  object ShowTreeTreeView: TTreeView
     Left = 159
     Top = 208
     Width = 326
@@ -124,7 +124,7 @@ object Form1: TForm1
     ReadOnly = True
     TabOrder = 1
   end
-  object StringGrid1: TStringGrid
+  object InitialStringGrid: TStringGrid
     Left = 8
     Top = 8
     Width = 145
@@ -139,7 +139,7 @@ object Form1: TForm1
     Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine]
     ScrollBars = ssNone
     TabOrder = 2
-    OnSelectCell = StringGrid1SelectCell
+    OnSelectCell = InitialStringGridSelectCell
     RowHeights = (
       30
       30
@@ -153,7 +153,7 @@ object Form1: TForm1
       30
       30)
   end
-  object Button1: TButton
+  object CreateFromArrayButton: TButton
     Left = 167
     Top = 22
     Width = 146
@@ -161,9 +161,9 @@ object Form1: TForm1
     Anchors = [akTop]
     Caption = #1057#1086#1079#1076#1072#1090#1100' ('#1080#1079' '#1084#1072#1089#1089#1080#1074#1072')'
     TabOrder = 3
-    OnClick = Button1Click
+    OnClick = CreateFromArrayButtonClick
   end
-  object Button2: TButton
+  object MakeBallanceButton: TButton
     Left = 167
     Top = 53
     Width = 146
@@ -171,9 +171,9 @@ object Form1: TForm1
     Anchors = [akTop]
     Caption = #1057#1073#1072#1083#1072#1085#1089#1080#1088#1086#1074#1072#1090#1100
     TabOrder = 4
-    OnClick = Button2Click
+    OnClick = MakeBallanceButtonClick
   end
-  object Button3: TButton
+  object AddButton: TButton
     Left = 167
     Top = 84
     Width = 146
@@ -181,9 +181,9 @@ object Form1: TForm1
     Anchors = [akTop]
     Caption = #1044#1086#1073#1072#1074#1080#1090#1100
     TabOrder = 5
-    OnClick = Button3Click
+    OnClick = AddButtonClick
   end
-  object Button4: TButton
+  object SearchByKeyButton: TButton
     Left = 167
     Top = 146
     Width = 146
@@ -191,9 +191,9 @@ object Form1: TForm1
     Anchors = [akTop]
     Caption = #1053#1072#1081#1090#1080' ('#1087#1086' '#1082#1083#1102#1095#1091')'
     TabOrder = 6
-    OnClick = Button4Click
+    OnClick = SearchByKeyButtonClick
   end
-  object Button5: TButton
+  object DeleteByKeyButton: TButton
     Left = 167
     Top = 116
     Width = 146
@@ -201,9 +201,9 @@ object Form1: TForm1
     Anchors = [akTop]
     Caption = #1059#1076#1072#1083#1080#1090#1100' ('#1087#1086' '#1082#1083#1102#1095#1091')'
     TabOrder = 7
-    OnClick = Button5Click
+    OnClick = DeleteByKeyButtonClick
   end
-  object Button6: TButton
+  object ShowInTreeViewButton: TButton
     Left = 330
     Top = 22
     Width = 146
@@ -211,9 +211,9 @@ object Form1: TForm1
     Anchors = [akTop]
     Caption = #1042' TreeView'
     TabOrder = 8
-    OnClick = Button6Click
+    OnClick = ShowInTreeViewButtonClick
   end
-  object Button7: TButton
+  object PrPrintButton: TButton
     Left = 330
     Top = 53
     Width = 146
@@ -221,9 +221,9 @@ object Form1: TForm1
     Anchors = [akTop]
     Caption = #1055#1088#1103#1084#1086#1081' '#1086#1073#1093#1086#1076
     TabOrder = 9
-    OnClick = Button7Click
+    OnClick = PrPrintButtonClick
   end
-  object Button8: TButton
+  object ObPrintButton: TButton
     Left = 330
     Top = 84
     Width = 146
@@ -231,9 +231,9 @@ object Form1: TForm1
     Anchors = [akTop]
     Caption = #1054#1073#1088#1072#1090#1085#1099#1081' '#1086#1073#1093#1086#1076
     TabOrder = 10
-    OnClick = Button8Click
+    OnClick = ObPrintButtonClick
   end
-  object Button9: TButton
+  object SimPrintButton: TButton
     Left = 329
     Top = 116
     Width = 147
@@ -241,9 +241,9 @@ object Form1: TForm1
     Anchors = [akTop]
     Caption = #1057#1080#1084#1084#1077#1090#1088#1080#1095#1085#1099#1081' '#1086#1073#1093#1086#1076
     TabOrder = 11
-    OnClick = Button9Click
+    OnClick = SimPrintButtonClick
   end
-  object Edit1: TEdit
+  object EnterKeyEdit: TEdit
     Left = 215
     Top = 181
     Width = 51
@@ -252,7 +252,7 @@ object Form1: TForm1
     NumbersOnly = True
     TabOrder = 12
   end
-  object Button10: TButton
+  object MyTaskButton: TButton
     Left = 523
     Top = 343
     Width = 146
@@ -260,9 +260,9 @@ object Form1: TForm1
     Anchors = [akTop]
     Caption = #1057#1042#1054#1049' '#1042#1040#1056#1048#1040#1053#1058' (6)'
     TabOrder = 13
-    OnClick = Button10Click
+    OnClick = MyTaskButtonClick
   end
-  object Button11: TButton
+  object ExitButton: TButton
     Left = 330
     Top = 146
     Width = 146
@@ -270,9 +270,9 @@ object Form1: TForm1
     Anchors = [akTop]
     Caption = #1042#1099#1093#1086#1076
     TabOrder = 14
-    OnClick = Button11Click
+    OnClick = ExitButtonClick
   end
-  object Edit2: TEdit
+  object EnterFioEdit: TEdit
     Left = 331
     Top = 181
     Width = 145

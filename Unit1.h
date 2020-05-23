@@ -13,41 +13,41 @@
 class TForm1 : public TForm
 {
 __published:	// IDE-managed Components
-	TMemo *Memo1;
-	TTreeView *TreeView1;
-	TStringGrid *StringGrid1;
-	TButton *Button1;
+	TMemo *ShowInfMemo;
+	TTreeView *ShowTreeTreeView;
+	TStringGrid *InitialStringGrid;
+	TButton *CreateFromArrayButton;
 	TLabel *Label1;
 	TLabel *Label2;
-	TButton *Button2;
-	TButton *Button3;
-	TButton *Button4;
-	TButton *Button5;
-	TButton *Button6;
-	TButton *Button7;
-	TButton *Button8;
-	TButton *Button9;
+	TButton *MakeBallanceButton;
+	TButton *AddButton;
+	TButton *SearchByKeyButton;
+	TButton *DeleteByKeyButton;
+	TButton *ShowInTreeViewButton;
+	TButton *PrPrintButton;
+	TButton *ObPrintButton;
+	TButton *SimPrintButton;
 	TLabel *Label3;
-	TEdit *Edit1;
-	TButton *Button10;
-	TButton *Button11;
+	TEdit *EnterKeyEdit;
+	TButton *MyTaskButton;
+	TButton *ExitButton;
 	TLabel *Label4;
 	TLabel *Label5;
-	TEdit *Edit2;
+	TEdit *EnterFioEdit;
 	TLabel *Label6;
 	void __fastcall FormCreate(TObject *Sender);
-	void __fastcall StringGrid1SelectCell(TObject *Sender, int ACol, int ARow, bool &CanSelect);
-	void __fastcall Button1Click(TObject *Sender);
-	void __fastcall Button11Click(TObject *Sender);
-	void __fastcall Button6Click(TObject *Sender);
-	void __fastcall Button7Click(TObject *Sender);
-	void __fastcall Button8Click(TObject *Sender);
-	void __fastcall Button9Click(TObject *Sender);
-	void __fastcall Button3Click(TObject *Sender);
-	void __fastcall Button5Click(TObject *Sender);
-	void __fastcall Button4Click(TObject *Sender);
-	void __fastcall Button10Click(TObject *Sender);
-	void __fastcall Button2Click(TObject *Sender);
+	void __fastcall InitialStringGridSelectCell(TObject *Sender, int ACol, int ARow, bool &CanSelect);
+	void __fastcall CreateFromArrayButtonClick(TObject *Sender);
+	void __fastcall ExitButtonClick(TObject *Sender);
+	void __fastcall ShowInTreeViewButtonClick(TObject *Sender);
+	void __fastcall PrPrintButtonClick(TObject *Sender);
+	void __fastcall ObPrintButtonClick(TObject *Sender);
+	void __fastcall SimPrintButtonClick(TObject *Sender);
+	void __fastcall AddButtonClick(TObject *Sender);
+	void __fastcall DeleteByKeyButtonClick(TObject *Sender);
+	void __fastcall SearchByKeyButtonClick(TObject *Sender);
+	void __fastcall MyTaskButtonClick(TObject *Sender);
+	void __fastcall MakeBallanceButtonClick(TObject *Sender);
 
 
 private:	// User declarations
